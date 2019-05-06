@@ -8,6 +8,29 @@ var odiagonalWin1 = {'0,0':0,'1,1':0,'2,2':0};
 var odiagonalWin2 = {'0,2':0,'1,1':0,'2,0':0};
 var currentPlayer = 'O';
 var movesCount = 0;
+var winX = 0;
+var winO = 0;
+var txt1;
+var txt2;
+var playerX;
+var playerO;
+
+window.onload = function(){
+  playerX = prompt("Please enter your name for player 1:");
+  if (playerX == null || playerX == "") {
+    txt1 = "User cancelled the prompt.";
+  } else {
+    txt1 = `PLAYER X (${playerX}):`;
+  }
+  playerO = prompt("Please enter your name for player 2:");
+  if (playerO == null || playerO == "") {
+    txt2 = "User cancelled the prompt.";
+  } else {
+    txt2 = `PLAYER O (${playerO}):`;
+  }
+  document.getElementById("playerX").textContent = txt1;
+  document.getElementById("playerO").textContent = txt2;
+};
 
 var restartGame = function() {
   var elements = document.getElementsByClassName("entry");
@@ -24,7 +47,22 @@ var restartGame = function() {
   overticalWin = {};
   odiagonalWin1 = {'0,0':0,'1,1':0,'2,2':0};
   odiagonalWin2 = {'0,2':0,'1,1':0,'2,0':0};
+  movesCount = 0;
+};
 
+var addWinner = function(winner) {
+  var element = document.getElementById('currentWinner');
+  element.textContent = winner;
+};
+
+var addScoreX = function() {
+  winX++;
+  document.getElementById("playerX").textContent =`${txt1} ${winX}`;
+};
+
+var addScoreO = function() {
+  winO++;
+  document.getElementById("playerO").textContent =`${txt2} ${winO}`;
 };
 
 var addPlayer = function(event) {
@@ -64,7 +102,7 @@ var checkPlayerX = function(pos) {
     posNum[i] = +posNum[i];    
   }
   positions.push(posNum);
-  checkWinnerX(positions, 'X');
+  checkWinnerX(positions, playerX);
 }
 
 var checkPlayerO = function(pos) {
@@ -74,7 +112,7 @@ var checkPlayerO = function(pos) {
     posNum[i] = +posNum[i];    
   }
   positions.push(posNum);
-  checkWinnerO(positions, 'O');
+  checkWinnerO(positions, playerO);
 }
 
 var checkWinnerX = function(positions, player) {
@@ -99,13 +137,17 @@ var checkWinnerX = function(positions, player) {
 
   for (const key in xhorizontalWin) {
     if (xhorizontalWin[key] === 3) {
-      alert(`Player ${player} has won!`);
+      alert(`${player} has won!`);
+      addWinner(playerX);
+      addScoreX();
       return;
     }
   }
   for (const key in xverticalWin) {
     if (xverticalWin[key] === 3) {
-      alert(`Player ${player} has won!`);
+      alert(`${player} has won!`);
+      addWinner(playerX);
+      addScoreX();
       return;
     }
   }
@@ -116,7 +158,9 @@ var checkWinnerX = function(positions, player) {
     }
   }
   if (count1 === 3) {
-    alert(`Player ${player} has won!`);
+    alert(`${player} has won!`);
+    addWinner(playerX);
+    addScoreX();
     return;
   }
   var count2 = 0;
@@ -126,7 +170,9 @@ var checkWinnerX = function(positions, player) {
     }
   }
   if (count2 === 3) {
-    alert(`Player ${player} has won!`);
+    alert(`${player} has won!`);
+    addWinner(playerX);
+    addScoreX();
     return;
   }
 };
@@ -153,13 +199,17 @@ var checkWinnerO = function(positions, player) {
 
   for (const key in ohorizontalWin) {
     if (ohorizontalWin[key] === 3) {
-      alert(`Player ${player} has won!`);
+      alert(`${player} has won!`);
+      addWinner(playerO);
+      addScoreO();
       return;
     }
   }
   for (const key in overticalWin) {
     if (overticalWin[key] === 3) {
-      alert(`Player ${player} has won!`);
+      alert(`${player} has won!`);
+      addWinner(playerO);
+      addScoreO();
       return;
     }
   }
@@ -170,7 +220,9 @@ var checkWinnerO = function(positions, player) {
     }
   }
   if (count1 === 3) {
-    alert(`Player ${player} has won!`);
+    alert(`${player} has won!`);
+    addWinner(playerO);
+    addScoreO();
     return;
   }
   var count2 = 0;
@@ -180,7 +232,9 @@ var checkWinnerO = function(positions, player) {
     }
   }
   if (count2 === 3) {
-    alert(`Player ${player} has won!`);
+    alert(`${player} has won!`);
+    addWinner(playerO);
+    addScoreO();
     return;
   }
 };
