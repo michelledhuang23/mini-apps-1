@@ -6,7 +6,8 @@ var ohorizontalWin = {};
 var overticalWin = {};
 var odiagonalWin1 = {'0,0':0,'1,1':0,'2,2':0};
 var odiagonalWin2 = {'0,2':0,'1,1':0,'2,0':0};
-var currentPlayer = 'X';
+var currentPlayer = 'O';
+var movesCount = 0;
 
 var restartGame = function() {
   var elements = document.getElementsByClassName("entry");
@@ -30,21 +31,29 @@ var addPlayer = function(event) {
   if (currentPlayer === 'X') {
     var id = event.currentTarget.id;
     var div = document.createElement('div');
+    div.classList.add("playerO");
     var node = document.createTextNode('O');
     div.appendChild(node);
     var element = document.getElementById(id);
     element.appendChild(div);
-    checkPlayerX(id);
+    checkPlayerO(id);
     currentPlayer = 'O'
+    movesCount++;
   } else {
     var id = event.currentTarget.id;
     var div = document.createElement('div');
+    div.classList.add("playerX");
     var node = document.createTextNode('X');
     div.appendChild(node);
     var element = document.getElementById(id);
     element.appendChild(div);
-    checkPlayerO(id);
+    checkPlayerX(id);
     currentPlayer = 'X'
+    movesCount++;
+  }
+  if (movesCount === 9) {
+    alert(`It's a draw!`)
+    restartGame();
   }
 };
 
@@ -55,7 +64,6 @@ var checkPlayerX = function(pos) {
     posNum[i] = +posNum[i];    
   }
   positions.push(posNum);
-  console.log(posNum);
   checkWinnerX(positions, 'X');
 }
 
@@ -66,12 +74,10 @@ var checkPlayerO = function(pos) {
     posNum[i] = +posNum[i];    
   }
   positions.push(posNum);
-  console.log(posNum);
   checkWinnerO(positions, 'O');
 }
 
 var checkWinnerX = function(positions, player) {
-  console.log('hello');
   for (let i = 0; i < positions.length; i++) {
     if (xhorizontalWin[positions[i][0]]) {
       xhorizontalWin[positions[i][0]]++;
@@ -83,10 +89,10 @@ var checkWinnerX = function(positions, player) {
     } else {
       xverticalWin[positions[i][1]] = 1;
     }
-    if (xdiagonalWin1[positions[i].toString()]) {
+    if (xdiagonalWin1[positions[i].toString()] === 0) {
       xdiagonalWin1[positions[i].toString()] = 1;
     }
-    if (xdiagonalWin2[positions[i].toString()]) {
+    if (xdiagonalWin2[positions[i].toString()] === 0) {
       xdiagonalWin2[positions[i].toString()] = 1;
     }
   }
@@ -94,14 +100,14 @@ var checkWinnerX = function(positions, player) {
   for (const key in xhorizontalWin) {
     if (xhorizontalWin[key] === 3) {
       alert(`Player ${player} has won!`);
+      return;
     }
-    return;
   }
   for (const key in xverticalWin) {
     if (xverticalWin[key] === 3) {
       alert(`Player ${player} has won!`);
+      return;
     }
-    return;
   }
   var count1 = 0;
   for (const key in xdiagonalWin1) {
@@ -123,7 +129,6 @@ var checkWinnerX = function(positions, player) {
     alert(`Player ${player} has won!`);
     return;
   }
-  console.log(xhorizontalWin);
 };
 
 var checkWinnerO = function(positions, player) {
@@ -138,10 +143,10 @@ var checkWinnerO = function(positions, player) {
     } else {
       overticalWin[positions[i][1]] = 1;
     }
-    if (odiagonalWin1[positions[i].toString()]) {
+    if (odiagonalWin1[positions[i].toString()] === 0) {
       odiagonalWin1[positions[i].toString()] = 1;
     }
-    if (odiagonalWin2[positions[i].toString()]) {
+    if (odiagonalWin2[positions[i].toString()] === 0) {
       odiagonalWin2[positions[i].toString()] = 1;
     }
   }
@@ -149,14 +154,14 @@ var checkWinnerO = function(positions, player) {
   for (const key in ohorizontalWin) {
     if (ohorizontalWin[key] === 3) {
       alert(`Player ${player} has won!`);
+      return;
     }
-    return;
   }
   for (const key in overticalWin) {
     if (overticalWin[key] === 3) {
       alert(`Player ${player} has won!`);
+      return;
     }
-    return;
   }
   var count1 = 0;
   for (const key in odiagonalWin1) {
@@ -178,5 +183,4 @@ var checkWinnerO = function(positions, player) {
     alert(`Player ${player} has won!`);
     return;
   }
-  console.log(ohorizontalWin);
 };
