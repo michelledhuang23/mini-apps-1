@@ -1,2 +1,32 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src='./app.js'></script>
+</head>
+<body>
+  <h1 class='title'>Tic Tac Toe</h1>
+  <table border='1' width='400' height='400'>
+      <tr>
+          <td class='entry' id='0,0' onclick="addPlayer(event);"></td>
+          <td class='entry' id='0,1' onclick="addPlayer(event);"></td>
+          <td class='entry' id='0,2' onclick="addPlayer(event);"></td>
+      </tr>
+      <tr>
+          <td class='entry' id='1,0' onclick="addPlayer(event);"></td>
+          <td class='entry' id='1,1' onclick="addPlayer(event);"></td>
+          <td class='entry' id='1,2' onclick="addPlayer(event);"></td>
+      </tr>
+      <tr>
+          <td class='entry' id='2,0' onclick="addPlayer(event);"></td>
+          <td class='entry' id='2,1' onclick="addPlayer(event);"></td>
+          <td class='entry' id='2,2' onclick="addPlayer(event);"></td>
+      </tr>
+  </table>
+  <button type="button" onclick="restartGame();">Restart Game!</button>
+</body>
+</html>
 
