@@ -1,2 +1,22 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSV Report Generator</title>
+</head>
+<body>
+  <h2>CSV Report Generator</h2>
+  <form id="jsonForm" action="/" method="POST">
+    JSON Input:<br>
+    <input id="jsonData" type="text" value="Enter JSON data">
+    <br>
+    <input type="submit" value="Submit">
+  </form> 
+  <p>Enter JSON data and get CSV file download!</p>
+  <script src="./node_modules/jquery/dist/jquery.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
 
