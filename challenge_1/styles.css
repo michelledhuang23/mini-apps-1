@@ -16,7 +16,7 @@ table {
 
 .scoreboard {
   background-color: #5ca0d3;
-  width: 200px;
+  width: 150px;
   margin: auto;
   padding-top: 15px;
 }
@@ -31,6 +31,7 @@ table {
 
 #playerX, #playerO {
   font-family: 'Roboto', sans-serif;
+  font-size: 12px;
   text-align: center;
   color: white;
   margin: auto;
