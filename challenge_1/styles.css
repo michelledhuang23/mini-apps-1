@@ -1,0 +1,60 @@
+h1 {
+  color: #aa7070;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+table {
+  margin: auto;
+}
+
+.playerX, .playerO {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  color: #085f63;
+}
+
+.scoreboard {
+  background-color: #5ca0d3;
+  width: 200px;
+  margin: auto;
+  padding-top: 15px;
+}
+
+.winner {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  font-weight: bold;
+  color: #02576c;
+  margin-bottom: 15px;
+}
+
+#playerX, #playerO {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  color: white;
+  margin: auto;
+  padding-bottom: 15px;
+}
+
+button {
+  color: white;
+  padding: 1.2em 2em;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  display: block;
+  max-width: 300px;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, #f0b7a4, #f18c8e);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.entry {
+  height: 70px;
+  width: 70px;
+  text-align: center;
+  background-color: #a9c6de;
+}
