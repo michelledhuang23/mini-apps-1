@@ -8,14 +8,8 @@ table {
   margin: auto;
 }
 
-.playerX, .playerO {
-  font-family: 'Roboto', sans-serif;
-  text-align: center;
-  color: #085f63;
-}
-
 .scoreboard {
-  background-color: #5ca0d3;
+  border: 2px #02576c;
   width: 150px;
   margin: auto;
   padding-top: 15px;
@@ -26,14 +20,20 @@ table {
   text-align: center;
   font-weight: bold;
   color: #02576c;
-  margin-bottom: 15px;
+}
+
+.playerX, .playerO {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  text-align: center;
+  color: #02576c;
 }
 
 #playerX, #playerO {
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   text-align: center;
-  color: white;
+  color: #02576c;
   margin: auto;
   padding-bottom: 15px;
 }
@@ -47,7 +47,7 @@ button {
   max-width: 300px;
   margin: auto;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   background: linear-gradient(135deg, #f0b7a4, #f18c8e);
   cursor: pointer;
   border-radius: 5px;
@@ -59,3 +59,4 @@ button {
   text-align: center;
   background-color: #a9c6de;
 }
+

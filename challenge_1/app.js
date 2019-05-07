@@ -16,13 +16,13 @@ var playerX;
 var playerO;
 
 window.onload = function(){
-  playerX = prompt("Please enter your name for player 1:");
+  playerX = prompt("Please enter your name for player 1:", "X");
   if (playerX == null || playerX == "") {
     txt1 = "User cancelled the prompt.";
   } else {
     txt1 = `PLAYER X (${playerX}):`;
   }
-  playerO = prompt("Please enter your name for player 2:");
+  playerO = prompt("Please enter your name for player 2:", "O");
   if (playerO == null || playerO == "") {
     txt2 = "User cancelled the prompt.";
   } else {
@@ -37,6 +37,7 @@ var restartGame = function() {
   for (let i = 0; i < elements.length; i++) {
     while (elements[i].firstChild) {
       elements[i].removeChild(elements[i].firstChild);
+      elements[i].style.pointerEvents = 'auto';
     }
   }
   xhorizontalWin = {};
@@ -73,6 +74,7 @@ var addPlayer = function(event) {
     var node = document.createTextNode('O');
     div.appendChild(node);
     var element = document.getElementById(id);
+    element.style.pointerEvents = 'none';
     element.appendChild(div);
     checkPlayerO(id);
     currentPlayer = 'O'
@@ -84,6 +86,7 @@ var addPlayer = function(event) {
     var node = document.createTextNode('X');
     div.appendChild(node);
     var element = document.getElementById(id);
+    element.style.pointerEvents = 'none';
     element.appendChild(div);
     checkPlayerX(id);
     currentPlayer = 'X'
