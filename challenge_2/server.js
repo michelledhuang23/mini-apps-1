@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+var fs = require('fs');
 const port = 3000;
 
 const app = express();
@@ -15,7 +16,6 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  res.status(201).send();
   let csvData = '';
   let tempRow = [];
   let headers = [];
@@ -44,5 +44,9 @@ app.post('/', (req, res) => {
     }
   };
   helper(parsedData.children);
-  console.log(csvData);
+
+  res.setHeader('Content-disposition', 'attachment; filename=default.csv');
+  res.set('Content-type', 'text/csv');
+  res.status(200).send(csvData);
 });
+

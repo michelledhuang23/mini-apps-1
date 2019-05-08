@@ -6,15 +6,19 @@ $("#jsonForm").submit(function(e) {
   var url = 'http://localhost:3000/';
 
   $.ajax({
-         type: "POST",
-         url: url,
-         data: {json: $("#jsonData").val()
-          },
-         success: function(data)
-         {
-           console.log('test');
-         }
-       });
+    type: "POST",
+    url: url,
+    data: {json: $("#jsonData").val()
+    },
+    success: function(data)
+    {
+      var blob=new Blob([data]);
+      var link=document.createElement('a');
+      link.href=window.URL.createObjectURL(blob);
+      link.download="test.csv";
+      link.click();
+    }
+  });
 
-
+  $("#jsonData").val('');
 });
