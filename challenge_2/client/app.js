@@ -4,24 +4,23 @@ $("#jsonForm").submit(function(e) {
   e.preventDefault(); // avoid to execute the actual submit of the form.
 
   var url = 'http://localhost:3000/';
+  var form = $(this);
 
   $.ajax({
     type: "POST",
     url: url,
-    data: {json: $("#jsonData").val()
-    },
+    data: new FormData(form[0]),
+    processData: false,
+    contentType: false,
     success: function(data)
     {
-      var blob=new Blob([data]);
+      // var blob=new Blob([data]);
+      console.log(data);
       var link=document.createElement('a');
-      link.href=window.URL.createObjectURL(blob);
+      link.href=data;
       link.text = "Download";
-      link.download="test.csv";
+      link.download="data.csv";
       $("#test").append(link);
-      // link.click();
-      // var newButton = document.createElement("button");
-      // newButton.link = link;
-      // $( "form" ).append(newButton);
     }
   });
 
