@@ -20,6 +20,7 @@ app.post('/', (req, res) => {
   let csvData = '';
   let tempRow = [];
   let headers = [];
+  console.log(req.body);
   let parsedData = JSON.parse(req.body);
   for (const key in parsedData) {
     if (key !== 'children') {
