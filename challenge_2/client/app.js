@@ -15,8 +15,13 @@ $("#jsonForm").submit(function(e) {
       var blob=new Blob([data]);
       var link=document.createElement('a');
       link.href=window.URL.createObjectURL(blob);
+      link.text = "Download";
       link.download="test.csv";
-      link.click();
+      $("#test").append(link);
+      // link.click();
+      // var newButton = document.createElement("button");
+      // newButton.link = link;
+      // $( "form" ).append(newButton);
     }
   });
 
