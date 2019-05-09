@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 
 class App extends React.Component {
   
   constructor(props) {
     super(props);
     this.state = {
-      page: 'home'
+      page: 'home',
+      userId: null
     }
     this.getUsersPage = this.getUsersPage.bind(this);
     this.submitUsersInfo = this.submitUsersInfo.bind(this);
@@ -34,22 +36,34 @@ class App extends React.Component {
   submitUsersInfo() {
     this.setState({
       page: 'address'
-    }, () => {
-      
     });
-
+    let values = [];
+    let info = $(".name, .email, .password");
+    for (let i = 0; i < info.length; i++) {
+      values.push(info[i].value);
+    }
   }
 
   submitAddressInfo() {
     this.setState({
       page: 'payment'
     });
+    let values = [];
+    let info = $(".address1, .address2, .city, .state, .zip-code, .phone-number");
+    for (let i = 0; i < info.length; i++) {
+      values.push(info[i].value);
+    }
   }
 
   submitPaymentInfo() {
     this.setState({
       page: 'home'
     });
+    let values = [];
+    let info = $(".credit-card, .expiration-date, .CVV, .billing-zip-code");
+    for (let i = 0; i < info.length; i++) {
+      values.push(info[i].value);
+    }
   }
 
   render() {
