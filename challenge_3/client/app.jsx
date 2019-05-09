@@ -33,18 +33,31 @@ class App extends React.Component {
     });
   }
 
-  submitUsersInfo() {
+  submitUsersInfo(inputs) {
     this.setState({
       page: 'address'
     });
-    let values = [];
-    let info = $(".name, .email, .password");
-    for (let i = 0; i < info.length; i++) {
-      values.push(info[i].value);
-    }
+    fetch('/user', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(inputs)
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+      this.setState({
+        userId: json.entryId
+      })
+    })
+    .catch(() => {
+      console.log('error!');
+    });
   }
 
-  submitAddressInfo() {
+  submitAddressInfo(inputs) {
     this.setState({
       page: 'payment'
     });
@@ -55,9 +68,10 @@ class App extends React.Component {
     }
   }
 
-  submitPaymentInfo() {
+  submitPaymentInfo(inputs) {
     this.setState({
-      page: 'home'
+      page: 'home',
+      userId: null
     });
     let values = [];
     let info = $(".credit-card, .expiration-date, .CVV, .billing-zip-code");
@@ -81,6 +95,41 @@ class Form1 extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      name: null,
+      email: null,
+      password: null,
+    }
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
+  }
+
+  handleNameChange(e) {
+    this.setState({
+      name: e.target.value
+    })
+  }
+
+  handleEmailChange(e) {
+    this.setState({
+      email: e.target.value
+    })
+  }
+
+  handlePasswordChange(e) {
+    this.setState({
+      password: e.target.value
+    })
+  }
+
+  handleButtonClick() {
+    this.props.submitUsersInfo({
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password
+    });
   }
   
   render() {
@@ -89,24 +138,24 @@ class Form1 extends React.Component {
       <div>
         <label>
           Name:
-          <input type="text" className='name'/>
+          <input type="text" className='name' onChange={this.handleNameChange}/>
         </label>
       </div>
 
       <div>
         <label>
           Email:
-          <input type="text" className='email'/>
+          <input type="text" className='email' onChange={this.handleEmailChange}/>
         </label>
       </div>
 
       <div>
         <label>
           Password:
-          <input type="text" className='password'/>
+          <input type="text" className='password' onChange={this.handlePasswordChange}/>
         </label>
       </div>
-      <button className='users-button' onClick={this.props.submitUsersInfo}>Submit</button>
+      <button className='users-button' onClick={this.handleButtonClick}>Submit</button>
     </div>);
   }
 }
